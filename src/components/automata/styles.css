@@ -1,0 +1,569 @@
+.automata-container {
+    color: #FFFFFF;
+}
+
+.automata-header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.automata-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+}
+
+.automata-header p {
+    color: #AAAAAA;
+    font-size: 0.95rem;
+}
+
+.automata-section {
+    background: #1e1e1e;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid #2a2a2a;
+}
+
+.automata-section h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #FFD700;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.automata-section p {
+    color: #AAAAAA;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+}
+
+.dfa-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    color: #FFFFFF;
+    padding: 0.25rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-left: 0.5rem;
+}
+
+/* State Diagram */
+.state-diagram-container {
+    overflow-x: auto;
+    padding: 1rem 0;
+}
+
+.state-diagram {
+    min-width: 600px;
+    width: 100%;
+    height: 400px;
+}
+
+.state-node {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.state-node circle {
+    transition: all 0.3s ease;
+}
+
+.state-node text {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    pointer-events: none;
+}
+
+.state-node.active circle {
+    fill: #FFD700;
+    stroke: #FFA500;
+    stroke-width: 3;
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.6));
+}
+
+.state-node.active text {
+    fill: #121212;
+}
+
+.transition-arrow {
+    fill: none;
+    stroke: #4a4a4a;
+    stroke-width: 2;
+    marker-end: url(#arrowhead);
+    transition: all 0.3s ease;
+}
+
+.transition-arrow.active {
+    stroke: #FFD700;
+    stroke-width: 3;
+    filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.6));
+}
+
+.transition-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    fill: #AAAAAA;
+    font-weight: 500;
+}
+
+/* Transition Table */
+.transition-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.transition-table th,
+.transition-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border: 1px solid #2a2a2a;
+}
+
+.transition-table th {
+    background: #2a2a2a;
+    color: #FFD700;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.transition-table td {
+    background: #1e1e1e;
+    color: #AAAAAA;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+}
+
+.transition-table tr.active-row {
+    background: rgba(255, 215, 0, 0.1);
+}
+
+.transition-table tr.active-row td {
+    color: #FFD700;
+    font-weight: 600;
+}
+
+/* 5-Tuple */
+.five-tuple-content {
+    font-family: 'Courier New', monospace;
+}
+
+.tuple-item {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: #2a2a2a;
+    border-radius: 8px;
+    border-left: 3px solid #FFD700;
+}
+
+.tuple-label {
+    color: #FFD700;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.tuple-value {
+    color: #FFFFFF;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.tuple-description {
+    color: #AAAAAA;
+    font-size: 0.85rem;
+    font-family: 'Inter', sans-serif;
+    margin-top: 0.5rem;
+}
+
+/* Production Rules */
+.rules-list {
+    list-style: none;
+    padding: 0;
+}
+
+.rule-item {
+    background: #2a2a2a;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+    border-left: 3px solid #FFD700;
+}
+
+.rule-production {
+    color: #FFD700;
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.rule-description {
+    color: #AAAAAA;
+    font-size: 0.9rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.accepted-strings {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a2a;
+}
+
+.accepted-strings h4 {
+    color: #FFD700;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.string-item {
+    background: #2a2a2a;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+}
+
+.string-value {
+    color: #4CAF50;
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+    margin-right: 1rem;
+}
+
+.string-description {
+    color: #AAAAAA;
+    font-size: 0.85rem;
+}
+
+/* Current State Indicator */
+.current-state-indicator {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    color: #121212;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+/* ==================== RESPONSIVE STYLES ==================== */
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 768px) {
+    .automata-side {
+        padding: 1rem;
+    }
+
+    .automata-header h2 {
+        font-size: 1.75rem;
+    }
+
+    .automata-header p {
+        font-size: 0.9rem;
+    }
+
+    .automata-section {
+        padding: 1.25rem;
+        margin-bottom: 1.75rem;
+    }
+
+    .automata-section h3 {
+        font-size: 1.15rem;
+    }
+
+    /* State Diagram - Tablet */
+    .state-diagram {
+        min-width: 500px;
+        height: 350px;
+    }
+
+    .state-node text {
+        font-size: 11px;
+    }
+
+    .transition-label {
+        font-size: 10px;
+    }
+
+    /* Table - Tablet */
+    .transition-table th,
+    .transition-table td {
+        padding: 0.65rem;
+        font-size: 0.85rem;
+    }
+
+    /* 5-Tuple - Tablet */
+    .tuple-item {
+        padding: 0.85rem;
+    }
+
+    .tuple-label {
+        font-size: 1rem;
+    }
+
+    .tuple-value {
+        font-size: 0.85rem;
+    }
+
+    /* Production Rules - Tablet */
+    .rule-item {
+        padding: 0.85rem;
+    }
+
+    .rule-production {
+        font-size: 1rem;
+    }
+
+    .rule-description {
+        font-size: 0.85rem;
+    }
+
+    /* Current State Indicator - Tablet */
+    .current-state-indicator {
+        padding: 0.85rem 1.25rem;
+        font-size: 1rem;
+    }
+}
+
+/* Mobile (< 768px) */
+@media (max-width: 480px) {
+    .automata-container {
+        font-size: 14px;
+    }
+
+    .automata-header {
+        margin-bottom: 1.5rem;
+    }
+
+    .automata-header h2 {
+        font-size: 1.5rem;
+        margin-bottom: 0.35rem;
+    }
+
+    .automata-header p {
+        font-size: 0.875rem;
+    }
+
+    .automata-section {
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        border-radius: 10px;
+    }
+
+    .automata-section h3 {
+        font-size: 1rem;
+        margin-bottom: 0.85rem;
+        gap: 0.4rem;
+    }
+
+    .automata-section p {
+        font-size: 0.875rem;
+        margin-bottom: 0.4rem;
+    }
+
+    .dfa-badge {
+        padding: 0.2rem 0.6rem;
+        font-size: 0.75rem;
+        margin-left: 0.4rem;
+    }
+
+    /* State Diagram - Mobile */
+    .state-diagram-container {
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 0.75rem 0;
+        /* Smooth scrolling for mobile */
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+    }
+
+    .state-diagram {
+        min-width: 400px;
+        width: 100%;
+        height: 300px;
+    }
+
+    .state-node text {
+        font-size: 10px;
+        font-weight: 700;
+    }
+
+    .transition-label {
+        font-size: 9px;
+    }
+
+    /* Transition Table - Mobile */
+    .transition-table {
+        font-size: 0.8rem;
+        /* Enable horizontal scroll on mobile */
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .transition-table thead,
+    .transition-table tbody {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+        min-width: 320px;
+    }
+
+    .transition-table th,
+    .transition-table td {
+        padding: 0.5rem 0.4rem;
+        font-size: 0.8rem;
+    }
+
+    .transition-table th {
+        font-size: 0.825rem;
+    }
+
+    /* 5-Tuple - Mobile */
+    .five-tuple-content {
+        font-size: 0.85rem;
+    }
+
+    .tuple-item {
+        margin-bottom: 0.85rem;
+        padding: 0.75rem;
+        border-radius: 6px;
+        border-left-width: 2px;
+    }
+
+    .tuple-label {
+        font-size: 0.95rem;
+        margin-bottom: 0.4rem;
+    }
+
+    .tuple-value {
+        font-size: 0.8rem;
+        line-height: 1.5;
+        /* Better word wrapping for mobile */
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .tuple-description {
+        font-size: 0.8rem;
+        margin-top: 0.4rem;
+    }
+
+    /* Production Rules - Mobile */
+    .rules-list {
+        margin-top: 0.75rem;
+    }
+
+    .rule-item {
+        padding: 0.75rem;
+        margin-bottom: 0.65rem;
+        border-radius: 6px;
+        border-left-width: 2px;
+    }
+
+    .rule-production {
+        font-size: 0.95rem;
+        margin-bottom: 0.4rem;
+        word-break: break-word;
+    }
+
+    .rule-description {
+        font-size: 0.825rem;
+        line-height: 1.5;
+    }
+
+    .accepted-strings {
+        margin-top: 1.25rem;
+        padding-top: 1.25rem;
+    }
+
+    .accepted-strings h4 {
+        font-size: 0.95rem;
+        margin-bottom: 0.85rem;
+    }
+
+    .string-item {
+        padding: 0.65rem 0.85rem;
+        margin-bottom: 0.45rem;
+        border-radius: 5px;
+    }
+
+    .string-value {
+        font-size: 0.9rem;
+        margin-right: 0.75rem;
+        display: block;
+        margin-bottom: 0.25rem;
+    }
+
+    .string-description {
+        font-size: 0.8rem;
+        line-height: 1.4;
+    }
+
+    /* Current State Indicator - Mobile */
+    .current-state-indicator {
+        padding: 0.75rem 1rem;
+        margin-bottom: 1.5rem;
+        border-radius: 6px;
+        font-size: 0.95rem;
+        word-break: break-word;
+    }
+}
+
+/* Extra Small Mobile (< 375px) */
+@media (max-width: 375px) {
+    .automata-header h2 {
+        font-size: 1.35rem;
+    }
+
+    .automata-section h3 {
+        font-size: 0.95rem;
+    }
+
+    .state-diagram {
+        min-width: 350px;
+        height: 280px;
+    }
+
+    .state-node text {
+        font-size: 9px;
+    }
+
+    .transition-label {
+        font-size: 8px;
+    }
+
+    .transition-table th,
+    .transition-table td {
+        padding: 0.4rem 0.3rem;
+        font-size: 0.75rem;
+    }
+
+    .tuple-label,
+    .rule-production {
+        font-size: 0.9rem;
+    }
+
+    .tuple-value,
+    .rule-description {
+        font-size: 0.75rem;
+    }
+
+    .current-state-indicator {
+        font-size: 0.9rem;
+        padding: 0.65rem 0.85rem;
+    }
+}

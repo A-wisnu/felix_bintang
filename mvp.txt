@@ -1,0 +1,26 @@
+Hanya ada 4 Halaman:
+1. Halaman Depan (Pilih Film & Jam)
+Tampilan langsung to the point.
+Isi: Daftar Poster Film.
+Fitur: Di bawah setiap poster, langsung ada tombol jam tayang hari ini.
+Contoh: Poster "Avengers" -> Tombol [13:00] [15:00] [19:00].
+Aksi: User klik salah satu Jam.
+2. Halaman Pilih Kursi
+Langsung masuk ke denah studio.
+Isi: Kotak-kotak kursi.
+Abu-abu = Kosong.
+Merah = Terisi.
+Aksi: User klik kursi (jadi warna hijau) -> Klik tombol "Lanjut".
+3. Halaman Data & Bayar (Satu Halaman)
+Gabungan form data diri dan pembayaran.
+Isi:
+Input: Nama & Email (untuk kirim tiket).
+Info: "2 Tiket: Rp 100.000".
+Pembayaran: Langsung tampilkan 1 metode saja (misal: QRIS).
+Aksi: User scan QR -> Klik "Saya Sudah Bayar".
+4. Halaman Tiket (Selesai)
+Isi: Kode Booking besar (misal: XF-990) atau QR Code.
+Pesan: "Tunjukkan kode ini di loket".
+Ringkasan Alur:
+Buka Web -> Klik Jam di bawah Poster -> Klik Kursi -> Isi Email & Scan QR -> Dapat Tiket.
+Selesai. Tidak ada login, tidak ada profil user, tidak ada search bar, tidak ada review.

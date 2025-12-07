@@ -1,0 +1,384 @@
+Desain UI/UX (Layout & Style)
+Kita menggunakan pendekatan Dark Mode (standar industri bioskop) agar terasa premium namun simpel.
+Style Guide Sederhana:
+Font: Inter atau Roboto (San-serif, bersih, mudah dibaca di HP).
+Warna Utama: Hitam Gelap (#121212) untuk background.
+Warna Aksen: Emas (#FFD700) atau Kuning Terang untuk tombol aksi (CTA).
+Warna Teks: Putih (#FFFFFF) dan Abu-abu (#AAAAAA).
+1. Halaman Home (State: Awal)
+Layout: Single Column (Mobile view).
+Header: Logo Bioskop (Tengah).
+Body: List Card Vertical.
+Gambar: Poster Film (Ratio 2:3).
+Teks: Judul (Bold, 18px), Genre (Regular, 12px).
+Action: Baris tombol jam tayang di bawah judul (misal: [14:00] [16:00] [19:00]).
+Penempatan: Tombol jam tayang harus besar dan mudah diklik jari jempol.
+2. Halaman Pilih Kursi (State: Seleksi)
+Header: Judul Film & Jam yang dipilih (Sticky top).
+Body:
+Visual "Layar Bioskop" (Trapezium shape) di bagian atas.
+Grid Layout: Kotak-kotak kecil 5x5 atau 6x6.
+Kotak Abu: Kosong.
+Kotak Merah: Terisi.
+Kotak Hijau: Dipilih User.
+Footer (Fixed Bottom):
+Kiri: "Total: Rp 50.000".
+Kanan: Tombol "Lanjut Bayar" (Warna Emas).
+3. Halaman Checkout (State: Pembayaran)
+Layout: Form Stack.
+Body:
+Input Field: "Email Anda" (Wajib).
+Card Ringkasan: Judul, Jam, No Kursi.
+Elemen Utama: Gambar QR Code (Statis untuk MVP) di tengah.
+Footer: Tombol besar bertuliskan "Saya Sudah Transfer".
+4. Halaman Tiket (State: Sukses)
+Layout: Centered Card.
+Body:
+Icon Centang Besar (Hijau).
+Teks: "Booking Berhasil!".
+Kode Tiket: Font Monospace Besar (misal: MOV-882).
+Pesan kecil: "Screenshot halaman ini".
+Footer: Tombol "Kembali ke Awal".
+B. Penjelasan Automata (Logika Sistem)
+Kita akan memodelkan sistem ini sebagai DFA (Deterministic Finite Automaton), spesifiknya model Moore Machine di mana output (tampilan layar) ditentukan oleh State saat ini.
+Definisi Formal (5-Tuple)
+Sistem 
+M
+=
+(
+Q
+,
+Σ
+,
+δ
+,
+S
+,
+F
+)
+M=(Q,Σ,δ,S,F)
+Himpunan State (
+Q
+Q
+):
+q
+0
+q 
+0
+​
+ 
+: Halaman Home (Idle).
+q
+1
+q 
+1
+​
+ 
+: Halaman Pilih Kursi (Film Selected).
+q
+2
+q 
+2
+​
+ 
+: Halaman Pembayaran (Seat Locked).
+q
+3
+q 
+3
+​
+ 
+: Proses Verifikasi (Checking).
+q
+4
+q 
+4
+​
+ 
+: Halaman Tiket Terbit (Final/Success).
+q
+5
+q 
+5
+​
+ 
+: Halaman Error/Gagal (Payment Failed).
+Himpunan Input / Alfabet (
+Σ
+Σ
+):
+a: User memilih jam tayang.
+b: User konfirmasi kursi & klik lanjut.
+c: User input email & klik "Sudah Bayar".
+d: Sistem memvalidasi pembayaran (Valid).
+e: Sistem menolak pembayaran (Invalid/Timeout).
+f: User menutup tiket/kembali ke awal.
+State Awal (
+S
+S
+): 
+q
+0
+q 
+0
+​
+ 
+State Akhir (
+F
+F
+): 
+{
+q
+4
+,
+q
+5
+}
+{q 
+4
+​
+ ,q 
+5
+​
+ }
+C. Diagram State (Diagram Transisi)
+Berikut adalah visualisasi alurnya:
+code
+Mermaid
+graph LR
+    q0((q0: Home)) -- a: Pilih Jam --> q1((q1: Kursi))
+    q1 -- b: Lanjut --> q2((q2: Bayar))
+    q2 -- c: Submit --> q3((q3: Verifikasi))
+    q3 -- d: Valid --> q4(((q4: Sukses)))
+    q3 -- e: Invalid --> q5(((q5: Gagal)))
+    q4 -- f: Reset --> q0
+    q5 -- f: Coba Lagi --> q2
+Penjelasan Alur:
+User mulai di Home (
+q
+0
+q 
+0
+​
+ 
+).
+Input a (Klik Jam) membawa user ke Pilih Kursi (
+q
+1
+q 
+1
+​
+ 
+).
+Input b (Pilih Kursi) membawa user ke Checkout (
+q
+2
+q 
+2
+​
+ 
+).
+Input c (Klik Bayar) membawa sistem ke Verifikasi (
+q
+3
+q 
+3
+​
+ 
+). Di sini user menunggu.
+Jika Valid (d), masuk ke Sukses (
+q
+4
+q 
+4
+​
+ 
+). Jika Gagal (e), masuk ke Error (
+q
+5
+q 
+5
+​
+ 
+).
+D. Sistem Output (Fungsi Output 
+λ
+λ
+)
+Karena ini MVP Web, setiap State menghasilkan Output berupa Tampilan Halaman (View).
+Rumus: 
+λ
+(
+q
+)
+→
+Output
+λ(q)→Output
+λ
+(
+q
+0
+)
+λ(q 
+0
+​
+ )
+ 
+→
+→
+ Tampilkan List Film & Jadwal.
+λ
+(
+q
+1
+)
+λ(q 
+1
+​
+ )
+ 
+→
+→
+ Tampilkan Layout Kursi (Map).
+λ
+(
+q
+2
+)
+λ(q 
+2
+​
+ )
+ 
+→
+→
+ Tampilkan Form Email & QRIS.
+λ
+(
+q
+3
+)
+λ(q 
+3
+​
+ )
+ 
+→
+→
+ Tampilkan Loading Spinner.
+λ
+(
+q
+4
+)
+λ(q 
+4
+​
+ )
+ 
+→
+→
+ Tampilkan E-Ticket & QR Code.
+λ
+(
+q
+5
+)
+λ(q 
+5
+​
+ )
+ 
+→
+→
+ Tampilkan Pesan Error & Tombol Retry.
+E. Aturan Produksi (Tata Bahasa / Grammar)
+Dalam teori bahasa formal (Regular Grammar), kita bisa menuliskan aturan produksinya sebagai berikut.
+Misalkan:
+Variabel Non-Terminal (State): 
+S
+,
+A
+,
+B
+,
+C
+,
+F
+,
+E
+S,A,B,C,F,E
+ (S=q0, A=q1, dst)
+Terminal (Input): 
+a
+,
+b
+,
+c
+,
+d
+,
+e
+,
+f
+a,b,c,d,e,f
+Aturan Produksi (
+P
+P
+):
+Mulai Memilih:
+S
+→
+a
+A
+S→aA
+
+(Dari Start, jika input 'pilih jam' (a), masuk state A)
+Memilih Kursi:
+A
+→
+b
+B
+A→bB
+
+(Dari state A, jika input 'lanjut' (b), masuk state B)
+Melakukan Pembayaran:
+B
+→
+c
+C
+B→cC
+
+(Dari state B, jika input 'bayar' (c), masuk state C/Verifikasi)
+Hasil Verifikasi (Cabang):
+C
+→
+d
+F
+C→dF
+
+(Dari C, jika valid (d), masuk Final Sukses)
+C
+→
+e
+E
+C→eE
+
+(Dari C, jika invalid (e), masuk Error)
+Looping/Reset (Opsional untuk sistem nyata):
+F
+→
+f
+S
+F→fS
+
+E
+→
+f
+S
+E→fS
+
+(Dari Final atau Error, jika input reset (f), kembali ke Start)
+Contoh String yang Diterima (Alur Sukses):
+String: abcd
+Artinya: Pilih Jam -> Pilih Kursi -> Bayar -> Validasi Sukses -> TIKET KELUAR

@@ -1,0 +1,3 @@
+ buat web nya itu jadi 2 sisi, yang kiri tetap sama pemesaan bioskop dan yang kanan adalah alur nya automata, sistem auto mata nya di kanan berikan penjelasan apakah ini dfa atau nfa, lalu buat diagram state yang interaktif mengikuti alur dari kiri, dan juga buat tabel di bawah diagramnya dan penjelasan 5 tuple yang sesuai dengan sistem ini. yang penting dikiri ada diagram state
+tunjukkan sistemnya (output)
+menunjukkan aturan produksi/tata bahasa.

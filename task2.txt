@@ -1,0 +1,3 @@
+buatkan aku sebuah halaman web yang memberikan informasi detail terkait automata dari web saya, nanti ini adalah bagian dari halaman tersembunyi yang bisa di akses jika user click logo fungsi nya adalah memberikan informasi terkait apakah web ini adalah nfa atau dfa serta memberikan penjelasan yang interaktif dimana nanti semua kode dari web ku ini akan muncul atau menyala saat web nya di jalankan sesuai alur dan juga nanti ada diagram state nya, inti nya nanti akan jadi seperti presentasi yang membahas: tentukan diagram state
+tunjukkan sistemnya (output)
+menunjukkan aturan produksi/tata bahasa. buat sekreatif mu 
